@@ -7,6 +7,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Scroll reveal: explicit .reveal elements (blog) plus case-study blocks
+  // site-wide. Classes are added here so no-JS visitors see everything.
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window && !reduced) {
+    Array.prototype.forEach.call(document.querySelectorAll('.case-study'), function (el) {
+      if (revealEls.indexOf(el) === -1) {
+        el.classList.add('reveal');
+        revealEls.push(el);
+      }
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
   // Native <video> can't play HLS directly outside Safari, so hls.js is
   // loaded on demand only for players that need it.
   var hlsPlayers = document.querySelectorAll('video[data-hls-src]');

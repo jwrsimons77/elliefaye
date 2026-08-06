@@ -11,3 +11,21 @@
   from = "/ellie-davidson-portfolio"
   to = "/"
   status = 301
+
+# The HTML references /css/, /assets/images/ and /assets/audio/ paths, but the
+# files were uploaded to the repo root (/style.css, /images/, /audio/). These
+# rewrites serve the real files at the referenced URLs without touching every page.
+[[redirects]]
+  from = "/css/style.css"
+  to = "/style.css"
+  status = 200
+
+[[redirects]]
+  from = "/assets/images/*"
+  to = "/images/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/assets/audio/*"
+  to = "/audio/:splat"
+  status = 200

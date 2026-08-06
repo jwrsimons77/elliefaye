@@ -34,4 +34,33 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+
+  // Post the contact form in the background so the page can swap in the
+  // success panel instead of handing off to Netlify's default thank-you page.
+  var contactForm = document.getElementById('contact-form');
+  var formSuccess = document.getElementById('form-success');
+  if (contactForm && formSuccess) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var button = contactForm.querySelector('button.submit');
+      if (button) button.disabled = true;
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(contactForm)).toString()
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Submission failed');
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function () {
+          if (button) button.disabled = false;
+          // Fall back to a normal form POST so a failed fetch never loses the message.
+          contactForm.submit();
+        });
+    });
+  }
 });

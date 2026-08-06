@@ -1,54 +1,8 @@
 /* Ellie Faye — blog ("Notes & Poems")
-   A darker, editorial counterpart to the portfolio. Inherits the header/nav
-   component from style.css and re-skins it via .theme-ink. Adds Fraunces
-   (variable serif) for verse and italic flourishes. */
-
-:root {
-  --ink: #101014;
-  --ink-2: #17171c;
-  --paper: #f5f4ea;
-  --paper-dim: #b9b8ad;
-  --gold: #dba05a;
-  --line: #2c2c33;
-  --font-serif: 'Fraunces', 'Georgia', serif;
-}
-
-/* ---------- Dark re-skin of shared chrome ---------- */
-
-body.theme-ink {
-  background: var(--ink);
-  color: var(--paper);
-}
-body.theme-ink ::selection {
-  background: var(--gold);
-  color: var(--ink);
-}
-body.theme-ink .site-header {
-  background: var(--ink);
-  border-bottom: 1px solid var(--line);
-}
-body.theme-ink .logo,
-body.theme-ink .nav-toggle {
-  color: var(--paper);
-}
-body.theme-ink .site-nav a.active { border-bottom-color: var(--gold); }
-body.theme-ink .site-nav a:hover { border-bottom-color: var(--paper); }
-@media (max-width: 720px) {
-  body.theme-ink .site-nav {
-    background: var(--ink);
-    border-bottom: 1px solid var(--line);
-  }
-  body.theme-ink .site-nav a { border-bottom: 1px solid var(--line); }
-}
-body.theme-ink .site-footer {
-  border-top: 1px solid var(--line);
-  color: var(--paper-dim);
-}
-body.theme-ink h1,
-body.theme-ink h2,
-body.theme-ink h3 {
-  color: var(--paper);
-}
+   A light editorial layer over the site's design system. Inherits the shared
+   header/nav and palette from style.css; adds Fraunces (variable serif) for
+   verse and italic flourishes. --gold-deep (defined in style.css) is used for
+   text-sized accents where the brighter gold wouldn't have enough contrast. */
 
 /* ---------- Reading progress (post pages) ---------- */
 
@@ -60,7 +14,7 @@ body.theme-ink h3 {
   width: 100%;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: var(--gold);
+  background: var(--accent);
   z-index: 200;
 }
 
@@ -75,7 +29,7 @@ body.theme-ink h3 {
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin: 0 0 18px;
 }
 .blog-hero h1 {
@@ -86,14 +40,14 @@ body.theme-ink h3 {
 }
 .blog-hero h1 .hollow {
   color: transparent;
-  -webkit-text-stroke: 2px var(--paper);
-  text-stroke: 2px var(--paper);
+  -webkit-text-stroke: 2px var(--text);
+  text-stroke: 2px var(--text);
 }
 .blog-hero h1 .amp {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  color: var(--gold);
+  color: var(--accent);
   text-transform: none;
   font-size: 0.9em;
 }
@@ -104,16 +58,17 @@ body.theme-ink h3 {
   font-style: italic;
   font-size: clamp(18px, 2.2vw, 23px);
   line-height: 1.55;
-  color: var(--paper-dim);
+  color: var(--muted);
 }
-.blog-hero .standfirst em { color: var(--paper); }
+.blog-hero .standfirst em { color: var(--text); }
 
 /* ---------- Ticker ---------- */
 
 .ticker {
   overflow: hidden;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 14px 0;
   white-space: nowrap;
 }
@@ -127,10 +82,10 @@ body.theme-ink h3 {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--muted);
   padding-right: 12px;
 }
-.ticker .dot { color: var(--gold); }
+.ticker .dot { color: var(--gold-deep); }
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -150,26 +105,27 @@ body.theme-ink h3 {
   gap: clamp(16px, 3vw, 40px);
   align-items: baseline;
   padding: clamp(26px, 4.5vh, 44px) 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
   position: relative;
 }
-.post-row:first-child { border-top: 1px solid var(--line); }
+.post-row:first-child { border-top: 1px solid var(--border); }
 .post-row .num {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: clamp(18px, 2vw, 24px);
-  color: var(--paper-dim);
+  color: var(--muted);
   transition: color 0.25s;
 }
+.post-row:hover .num { color: var(--gold-deep); }
 .post-row .title {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: clamp(26px, 4.6vw, 56px);
   line-height: 1.04;
   letter-spacing: -0.015em;
-  color: var(--paper);
+  color: var(--black);
   display: inline;
-  background-image: linear-gradient(var(--gold), var(--gold));
+  background-image: linear-gradient(var(--accent), var(--accent));
   background-repeat: no-repeat;
   background-position: 0 92%;
   background-size: 0% 3px;
@@ -179,11 +135,10 @@ body.theme-ink h3 {
 .post-row a:focus-visible .title {
   background-size: 100% 3px;
 }
-.post-row:hover .num { color: var(--gold); }
 .post-row .excerpt {
   max-width: 58ch;
   margin-top: 14px;
-  color: var(--paper-dim);
+  color: var(--muted);
   font-size: 15px;
 }
 .post-row .meta {
@@ -192,7 +147,7 @@ body.theme-ink h3 {
   align-items: flex-end;
   gap: 8px;
   font-size: 13px;
-  color: var(--paper-dim);
+  color: var(--muted);
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
@@ -203,8 +158,8 @@ body.theme-ink h3 {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid var(--gold);
+  color: var(--gold-deep);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 4px 12px;
 }
@@ -225,7 +180,7 @@ body.theme-ink h3 {
 
 .post-header {
   padding: clamp(48px, 9vh, 110px) 0 clamp(28px, 5vh, 60px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border);
 }
 .post-header .tag { margin-bottom: 22px; }
 .post-header h1 {
@@ -239,9 +194,9 @@ body.theme-ink h3 {
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--muted);
 }
-.post-header .post-meta .sep { color: var(--gold); padding: 0 10px; }
+.post-header .post-meta .sep { color: var(--gold-deep); padding: 0 10px; }
 
 .post-body {
   padding: clamp(48px, 8vh, 90px) 0 clamp(56px, 9vh, 100px);
@@ -253,7 +208,7 @@ body.theme-ink h3 {
 .post-body p {
   font-size: 17px;
   line-height: 1.8;
-  color: #e8e7dc;
+  color: #2b2b2f;
   margin: 0 0 26px;
 }
 .post-body .lede {
@@ -261,7 +216,7 @@ body.theme-ink h3 {
   font-style: italic;
   font-size: clamp(19px, 2.4vw, 24px);
   line-height: 1.6;
-  color: var(--paper);
+  color: var(--text);
 }
 .essay > p:first-of-type::first-letter {
   font-family: var(--font-serif);
@@ -270,7 +225,7 @@ body.theme-ink h3 {
   line-height: 0.8;
   float: left;
   padding: 8px 14px 0 0;
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 
 /* Verse */
@@ -278,7 +233,7 @@ body.theme-ink h3 {
   font-family: var(--font-serif);
   font-size: clamp(19px, 2.4vw, 24px);
   line-height: 1.75;
-  color: var(--paper);
+  color: var(--text);
   margin: 0 0 40px;
 }
 .poem .stanza {
@@ -287,24 +242,19 @@ body.theme-ink h3 {
 .poem .stanza:last-child { margin-bottom: 0; }
 .poem .line { display: block; }
 .poem .line.indent { padding-left: 2.2em; }
-.poem em { color: var(--gold); }
+.poem em { color: var(--gold-deep); }
 .poem-title-note {
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--muted);
   margin-bottom: 34px;
 }
 
-/* Pull quote / interruption */
+/* Pull quote / interruption — inherits the shared blockquote style, sized up */
 .interruption {
-  font-family: var(--font-serif);
-  font-style: italic;
   font-size: clamp(24px, 3.6vw, 38px);
   line-height: 1.35;
-  color: var(--paper);
-  border-left: 3px solid var(--gold);
-  padding-left: clamp(18px, 3vw, 34px);
   margin: clamp(40px, 6vh, 64px) 0;
 }
 
@@ -313,7 +263,7 @@ body.theme-ink h3 {
   text-align: center;
   font-family: var(--font-serif);
   font-size: 24px;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin: clamp(36px, 6vh, 56px) 0;
   letter-spacing: 0.6em;
 }
@@ -324,10 +274,10 @@ body.theme-ink h3 {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 20px;
-  color: var(--paper-dim);
+  color: var(--muted);
 }
 .post-nav {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -338,14 +288,14 @@ body.theme-ink h3 {
   gap: 10px;
   transition: background 0.25s;
 }
-.post-nav a:hover { background: var(--ink-2); }
-.post-nav a + a { border-left: 1px solid var(--line); text-align: right; align-items: flex-end; }
+.post-nav a:hover { background: var(--cream); }
+.post-nav a + a { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
 .post-nav a:only-child { grid-column: span 2; }
 .post-nav .dir {
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--muted);
 }
 .post-nav .post-nav-title {
   font-family: var(--font-heading);
@@ -353,27 +303,8 @@ body.theme-ink h3 {
   font-size: clamp(18px, 2.6vw, 28px);
   line-height: 1.1;
 }
-.post-nav a:hover .post-nav-title { color: var(--gold); }
+.post-nav a:hover .post-nav-title { color: var(--gold-deep); }
 @media (max-width: 600px) {
   .post-nav { grid-template-columns: 1fr; }
-  .post-nav a + a { border-left: none; border-top: 1px solid var(--line); }
-}
-
-/* ---------- Scroll reveal ---------- */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  .post-nav a + a { border-left: none; border-top: 1px solid var(--border); }
 }

@@ -11,9 +11,16 @@
   --accent: #dba05a;
   --black: #000000;
   --border: #d8d8d2;
+  --gold-deep: #a06b2a;
   --max-width: 1180px;
   --font-heading: 'Poppins', 'Arial Black', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', 'Georgia', serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--black);
 }
 
 * { box-sizing: border-box; }
@@ -162,10 +169,22 @@ section.cream { background: var(--cream); }
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 15px;
-  border-bottom: 2px solid var(--accent);
   padding-bottom: 4px;
+  background-image: linear-gradient(var(--black), var(--black)), linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%, 0 100%;
+  background-size: 0% 2px, 100% 2px;
+  transition: background-size 0.35s ease;
 }
-.cta:hover { opacity: 0.7; }
+.cta:hover { background-size: 100% 2px, 100% 2px; }
+
+/* Serif italic lede — first paragraph of the home hero intro */
+.hero .two-col p:first-of-type {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(19px, 2.2vw, 23px);
+  color: var(--black);
+}
 
 /* Case study preview blocks (home + portfolio index) */
 .case-study {
@@ -188,8 +207,15 @@ section.cream { background: var(--cream); }
   .case-study .media.grid-2,
   .case-study .media.grid-3 { grid-template-columns: 1fr; }
 }
-.case-study h3 a { border-bottom: 2px solid transparent; }
-.case-study h3 a:hover { border-bottom-color: var(--accent); }
+.case-study h3 a {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 0% 3px;
+  transition: background-size 0.35s ease;
+}
+.case-study h3 a:hover,
+.case-study h3 a:focus-visible { background-size: 100% 3px; }
 
 /* Image gallery grid used across case-study pages */
 .gallery {
@@ -257,12 +283,15 @@ section.cream { background: var(--cream); }
 
 /* Quote */
 blockquote {
-  font-family: var(--font-heading);
-  font-size: clamp(20px, 2.6vw, 28px);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(21px, 2.8vw, 30px);
+  font-weight: 400;
   color: var(--black);
+  border-left: 3px solid var(--accent);
+  padding-left: clamp(18px, 3vw, 34px);
   margin: 0 0 30px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 blockquote cite {
   display: block;
@@ -335,6 +364,24 @@ button.submit:hover { background: var(--accent); }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+/* Scroll reveal (elements get .reveal from markup or js/main.js, .in when visible) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Utility */

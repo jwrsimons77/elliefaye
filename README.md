@@ -51,6 +51,13 @@ One poster frame (Sans Gender's first clip) has a "REVIEW VERSION" watermark bak
 it — that's coming from Squarespace's own thumbnail endpoint, not something introduced
 here. Re-export a clean poster from Squarespace's Video Studio if you want it gone.
 
+**Missing poster files.** The 7 files in `assets/video-posters/` never made it into the
+repo, so those `<video poster="...">` attributes currently 404. Nothing looks broken —
+the players sit on the black `.video-block` background exactly as they would with no
+poster at all — but if you want thumbnails before playback, re-export the frames from
+Squarespace and drop them in at the filenames the HTML already expects:
+`sans-gender-1/2/3.jpg`, `little-songs-1/2/3.jpg`, `flags-of-hope-1.jpg`.
+
 **Audio.** The three "Changing Minds on HIV" radio ads were downloaded directly (permanent
 non-expiring links) and are fully self-hosted in `assets/audio/` — no dependency on
 Squarespace for these.

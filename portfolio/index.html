@@ -3,20 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio — Ellie Faye</title>
+<title>Portfolio | Ellie Faye</title>
 <meta name="description" content="Browse Ellie Faye's copywriting portfolio">
+<meta name="robots" content="noindex, nofollow">
+<script>(function(){try{if(localStorage.getItem('ef-private-gate')==='b8db007d3fc806da81c3578c43b9cac6fe781406b4196d434dd77e951fbc0f41')return;}catch(e){}document.documentElement.classList.add('locked');})();</script>
+<link rel="icon" href="/images/blue-orangutan.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<div class="gate-screen" id="gate">
+  <div class="gate-card">
+    <p class="gate-eyebrow">Private area</p>
+    <h2>This page is password protected</h2>
+    <p>Ellie's portfolio and contact details are private. If you have the password, enter it below. Otherwise, you are very welcome over at the <a href="/">Blue Orangutan Tales blog</a>.</p>
+    <form id="gate-form">
+      <label for="gate-password">Password</label>
+      <input type="password" id="gate-password" name="password" autocomplete="off" required>
+      <button class="submit" type="submit">Unlock</button>
+      <p class="gate-error" id="gate-error">That password is not right. Please try again.</p>
+    </form>
+  </div>
+</div>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/">Ellie Faye</a>
+    <a class="logo" href="/portfolio/home/">Ellie Faye</a>
     <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
     <nav class="site-nav">
-      <a href="/">Home</a>
+      <a href="/">Blog</a>
+      <a href="/portfolio/home/">Portfolio Home</a>
       <a href="/portfolio/" class="active">Portfolio</a>
       <a href="/get-in-touch/">Get In Touch</a>
     </nav>
@@ -95,7 +112,8 @@
   <div class="wrap footer-cols">
     <div class="footer-col">
       <h4>Site Map</h4>
-      <a href="/">Home</a>
+      <a href="/">Blog</a>
+      <a href="/portfolio/home/">Portfolio Home</a>
       <a href="/portfolio/">Portfolio</a>
       <a href="/get-in-touch/">Get In Touch</a>
     </div>
@@ -106,6 +124,7 @@
   </div>
   <div class="footer-giant" aria-hidden="true">Portfolio</div>
 </footer>
+<script src="/js/gate.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

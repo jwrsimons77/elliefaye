@@ -44,8 +44,8 @@
   --port: var(--pink);       /* old wine tokens now map to rose */
   --port-deep: #c9647e;
   --port-pale: var(--pink-pale);
-  --footer-bg: var(--kraft);
-  --footer-text: #fdf9f3;
+  --footer-bg: #b9d2e8;      /* the orangutan's soft blue */
+  --footer-text: #43505c;    /* slate ink that reads well on it */
 
   --max-width: 1180px;
   --radius: 10px;
@@ -649,7 +649,7 @@ button.submit:hover {
   border-radius: var(--radius);
 }
 
-/* Footer: the kraft-paper back cover, stitched shut */
+/* Footer: a soft blue journal page, stitched shut */
 .site-footer {
   background: var(--footer-bg);
   color: var(--footer-text);
@@ -664,7 +664,7 @@ button.submit:hover {
   top: 12px;
   left: 24px;
   right: 24px;
-  border-top: 2px dashed rgba(253, 249, 243, 0.55);
+  border-top: 2px dashed rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
 .footer-cols {
@@ -679,7 +679,7 @@ button.submit:hover {
   font-size: 24px;
   letter-spacing: 0.02em;
   margin: 0 0 16px;
-  color: #6b4d2b;
+  color: var(--blue-deep);
 }
 .footer-col a {
   display: block;
@@ -694,14 +694,14 @@ button.submit:hover {
 }
 .footer-col a:hover {
   opacity: 1;
-  color: #4a3520;
+  color: var(--blue-deep);
   transform: translateX(4px);
 }
 .footer-giant {
   font-family: var(--font-hand);
   font-weight: 700;
   color: #fff;
-  opacity: 0.32;
+  opacity: 0.5;
   font-size: clamp(90px, 15vw, 250px);
   line-height: 0.9;
   letter-spacing: 0.01em;

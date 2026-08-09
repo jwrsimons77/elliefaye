@@ -1,80 +1,92 @@
-# Ellie Faye — site rebuild
+# Blue Orangutan Tales / Ellie Faye
 
-A static rebuild of elliefaye.co.uk, hand-built from the live site's content and images,
-for hosting on Netlify. Plain HTML/CSS/JS — no build step, no framework, no dependencies
-to install. Just push and deploy.
+The public face of this site is now **Blue Orangutan Tales**, Ellie's book review and
+poetry blog, named after the blue orangutan bookmark that lives in whatever she is
+reading. Ellie's professional copywriting portfolio and the contact form still exist,
+but they are private, hidden behind a password.
+
+Plain HTML/CSS/JS, no build step, hosted on Netlify.
+
+## Site structure
+
+```
+index.html                              Blog home (Blue Orangutan Tales)
+book-reviews/index.html                 Book reviews landing page
+poems/index.html                        Poems landing page
+about/index.html                        About Ellie
+post-template.html                      Copy this to publish a new review or poem
+portfolio/home/index.html               Old portfolio homepage (password protected)
+portfolio/index.html                    Portfolio grid (password protected)
+portfolio/<slug>/index.html             9 case studies (password protected)
+get-in-touch/index.html                 Contact form (password protected)
+style.css                               All styling
+js/main.js                              Nav toggle, contact form, video playback
+js/gate.js                              Password gate for the private pages
+images/blue-orangutan.svg               Blog mascot, also used as the favicon
+robots.txt / sitemap.xml                SEO: only the public blog pages are indexed
+```
+
+## The password gate
+
+The portfolio pages and Get In Touch are locked behind the password `EllieFaye`.
+
+How it works: each private page carries a small script that hides the page and shows a
+password screen. The visitor's entry is hashed with SHA-256 in the browser and compared
+against a stored hash, so the password itself never appears in the source code. A correct
+entry is remembered in the browser (localStorage), so each visitor only types it once.
+
+To change the password: generate the new hash with
+`printf 'NewPassword' | shasum -a 256` (Mac) or `printf 'NewPassword' | sha256sum`
+(Linux), then replace the old hash everywhere it appears: once in `js/gate.js` and once
+in the head script of every private page. Search the project for the old hash and
+replace all matches.
+
+Honest limitation: this is a privacy screen, not bank-grade security. The page content
+is still in the HTML source for anyone determined enough to read it. It is the right
+level of protection for keeping a portfolio out of casual view and out of search
+engines (all private pages are marked noindex, blocked in robots.txt and served with a
+noindex header from `netlify.toml`). If stronger protection is ever needed, Netlify's
+built-in password protection (a paid feature) locks pages at the server.
+
+## Publishing a new blog post
+
+1. Copy `post-template.html` to `book-reviews/your-post-slug/index.html` or
+   `poems/your-post-slug/index.html`.
+2. Follow the TODO notes inside the file (title, description, date, body, and delete
+   the temporary noindex line).
+3. Add a card linking to the post on the matching landing page and, if you like, on the
+   homepage under Latest tales.
+4. Add the new URL to `sitemap.xml`.
+
+House style: no em dashes anywhere on the site. Use commas, colons or full stops
+instead.
+
+## SEO notes
+
+The blog is optimised around North West poetry and book reviewing: page titles and
+descriptions mention North West poets, Manchester and book reviews, structured data
+(JSON-LD) describes the site, the blog and Ellie as a person, and `sitemap.xml` lists
+the public pages. The biggest SEO lever from here is simply publishing posts: each
+review should name the book and author in its title, and each poem page gives search
+engines another page of original writing to index. Instagram: the blog links throughout
+to https://www.instagram.com/blueorangutantales/
 
 ## Deploying on Netlify
 
-1. Push this folder to a GitHub/GitLab/Bitbucket repo (or drag-and-drop the folder into
-   Netlify's "Deploys" tab for a one-off manual deploy).
-2. In Netlify: **Add new site → Import an existing project**, connect the repo.
-3. Build settings: leave the build command blank, publish directory = `.` (repo root).
-   `netlify.toml` already sets this.
-4. Deploy. Netlify Forms (used by the Get In Touch page) works automatically once the
-   site is live on a Netlify domain — no extra setup needed.
+1. Push to the connected repo, Netlify deploys automatically. Build command blank,
+   publish directory `.` (already set in `netlify.toml`).
+2. Netlify Forms powers the Get In Touch page automatically once live on a Netlify
+   domain.
 
-## What's here
+## Known differences from the original portfolio site
 
-```
-index.html                              Home
-portfolio/index.html                    Portfolio grid
-portfolio/<slug>/index.html             9 case studies
-get-in-touch/index.html                 Contact form (Netlify Forms)
-style.css                               All styling
-js/main.js                              Mobile nav toggle, contact form AJAX submit, HLS video playback
-images/                                 Downloaded campaign/award images + Ellie's headshots
-audio/                                  3 radio ad mp3s (Changing Minds on HIV)
-```
+**Fonts.** The original used Adobe Fonts (Obviously Wide and Aktiv Grotesk), licensed to
+the old Squarespace account. This rebuild uses Poppins and Inter from Google Fonts as
+the closest free equivalents.
 
-`netlify.toml` keeps redirects from the older `/css/style.css` and `/assets/*` paths in case
-anything external still links to them, but the working paths are the flat ones above.
+**Videos.** The portfolio video clips still stream from Squarespace's video CDN. If the
+Squarespace account is cancelled they will break. Download the originals from the
+Squarespace editor first and swap the `data-hls-src` attributes for local files.
 
-## Known differences from the original — read before treating this as final
-
-**Fonts.** The original uses Adobe Fonts ("Obviously Wide" for headings, "Aktiv Grotesk"
-for body), licensed to the old Squarespace account and tied to that domain — they can't be
-carried over as-is. This rebuild uses **Poppins** + **Inter** from Google Fonts as the
-closest free equivalents. If you have your own Adobe Fonts subscription, you can swap the
-`<link>` tags in every page's `<head>` for your own kit embed and add the new domain to the
-kit's allowed domains in your Adobe Fonts account.
-
-**Videos.** The 8 video clips (Sans Gender ×3, Little Songs for Little Leaks ×3, Flags of
-Hope, Extra Bits) are still streamed live from Squarespace's video CDN via HLS
-(`js/main.js` loads hls.js to play them in browsers other than Safari). This works today,
-but it depends on your Squarespace account/media library staying alive — **if you cancel
-Squarespace, these will break.** Before you cancel: go to each video block in the
-Squarespace editor and download the original file (Video block → Settings → there's a
-download/export option, or ask Squarespace support for a bulk export), then drop the files
-into `assets/video/` and change each `<video data-hls-src="...">` to a plain
-`<video src="/assets/video/yourfile.mp4">`.
-
-One poster frame (Sans Gender's first clip) has a "REVIEW VERSION" watermark baked into
-it — that's coming from Squarespace's own thumbnail endpoint, not something introduced
-here. Re-export a clean poster from Squarespace's Video Studio if you want it gone.
-
-**Audio.** The three "Changing Minds on HIV" radio ads were downloaded directly (permanent
-non-expiring links) and are fully self-hosted in `assets/audio/` — no dependency on
-Squarespace for these.
-
-**Illustration/decoration.** The "Little Songs for Little Leaks" page had a lot of bespoke
-illustrated Squarespace elements (pink drips, music notes, a radio graphic) that weren't
-worth hand-recreating as static assets. The copy and images are faithful; the hand-drawn
-decoration is simplified to plain typography.
-
-**Content gaps.** Two pages needed the site's password to read
-(`ellie-davidson-portfolio` login-gated content) — everything reachable from the public
-nav (Home, Portfolio + its 9 case studies, Get In Touch) is rebuilt in full.
-
-**No blog.** An earlier pass added a `/blog/` section with three original poems under
-Ellie's name. The live site has no blog — that nav item 404s on elliefaye.co.uk — so it
-was invented content, not a rebuild of anything real, and has been removed. If a blog is
-wanted going forward it should be commissioned as new, clearly-labelled content rather than
-presented as part of the site rebuild.
-
-## Editing content
-
-No CMS — edit the HTML files directly. Each page is self-contained; there's no templating,
-so shared bits (header/nav/footer) are duplicated across every page. If you're comfortable
-with a static site generator later (Eleventy, Astro, etc.) this structure ports over
-easily, but for a "clone the site, upload manually" workflow, plain files are simplest.
+**Audio.** The three Changing Minds on HIV radio ads are self-hosted in `audio/`, with
+no Squarespace dependency.

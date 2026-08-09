@@ -7,9 +7,21 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
 
+# Belt-and-braces on top of the in-page noindex meta tags: tell crawlers
+# not to index the password-protected portfolio and contact pages.
+[[headers]]
+  for = "/portfolio/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/get-in-touch/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[redirects]]
   from = "/ellie-davidson-portfolio"
-  to = "/"
+  to = "/portfolio/home/"
   status = 301
 
 # The HTML now references the real root-level paths (/style.css, /images/,

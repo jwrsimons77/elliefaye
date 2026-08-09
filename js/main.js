@@ -31,6 +31,27 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Netlify contact form: submit via fetch so we can swap in the success
+  // message without a full page reload.
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function () {
+        form.style.display = 'none';
+        var success = document.getElementById('form-success');
+        if (success) success.style.display = 'block';
+      }).catch(function () {
+        form.submit();
+      });
+    });
+  }
+
   // Native <video> can't play HLS directly outside Safari, so hls.js is
   // loaded on demand only for players that need it.
   var hlsPlayers = document.querySelectorAll('video[data-hls-src]');

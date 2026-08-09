@@ -21,12 +21,14 @@ index.html                              Home
 portfolio/index.html                    Portfolio grid
 portfolio/<slug>/index.html             9 case studies
 get-in-touch/index.html                 Contact form (Netlify Forms)
-css/style.css                           All styling
-js/main.js                              Mobile nav toggle + HLS video playback
-assets/images/                          82 downloaded campaign/award images
-assets/audio/                           3 radio ad mp3s (Changing Minds on HIV)
-assets/video-posters/                   Poster frames for the 8 native video clips
+style.css                               All styling
+js/main.js                              Mobile nav toggle, contact form AJAX submit, HLS video playback
+images/                                 Downloaded campaign/award images + Ellie's headshots
+audio/                                  3 radio ad mp3s (Changing Minds on HIV)
 ```
+
+`netlify.toml` keeps redirects from the older `/css/style.css` and `/assets/*` paths in case
+anything external still links to them, but the working paths are the flat ones above.
 
 ## Known differences from the original — read before treating this as final
 
@@ -63,6 +65,12 @@ decoration is simplified to plain typography.
 **Content gaps.** Two pages needed the site's password to read
 (`ellie-davidson-portfolio` login-gated content) — everything reachable from the public
 nav (Home, Portfolio + its 9 case studies, Get In Touch) is rebuilt in full.
+
+**No blog.** An earlier pass added a `/blog/` section with three original poems under
+Ellie's name. The live site has no blog — that nav item 404s on elliefaye.co.uk — so it
+was invented content, not a rebuild of anything real, and has been removed. If a blog is
+wanted going forward it should be commissioned as new, clearly-labelled content rather than
+presented as part of the site rebuild.
 
 ## Editing content
 

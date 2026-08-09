@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get In Touch — Ellie Faye</title>
+<meta name="description" content="Get in touch with Ellie Faye, Manchester-based creative copywriter">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Ellie Faye</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/get-in-touch/" class="active">Get In Touch</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Like what<br>you see?</h1>
+    <div class="two-col">
+      <div>
+        <p>Due to the uniquely medical nature of my work, I can't share it all online - insert reams of legal jargon.</p>
+        <p>So, if anything you've seen here sounds/looks/<strong>feels</strong> interesting to you, please get in touch and I can take you through the full suite of my experience.</p>
+
+        <div class="form-success" id="form-success">
+          <p>Thanks — your message is on its way. I'll be in touch soon.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form" name="contact" method="POST"
+              data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="first-name">First Name <span class="small">(required)</span></label>
+              <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="field">
+              <label for="last-name">Last Name <span class="small">(required)</span></label>
+              <input type="text" id="last-name" name="last-name" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="small">(required)</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="small">(required)</span></label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button class="submit" type="submit">Submit</button>
+        </form>
+      </div>
+      <div><img src="/images/79eb2559_MicrosoftTeams-image.jpg" alt="Ellie Faye"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-cols">
+    <div class="footer-col">
+      <h4>Site Map</h4>
+      <a href="/">Home</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/get-in-touch/">Get In Touch</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="https://www.linkedin.com/in/ellie-davidson-1444b1192" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-giant" aria-hidden="true">Portfolio</div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

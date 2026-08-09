@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+title: "About Ellie | North West Poet and Book Reviewer"
+description: "Meet Ellie Faye, the North West poet and book reviewer behind Blue Orangutan Tales, named after the blue orangutan bookmark that lives in whatever she is reading."
+permalink: /about/
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="two-col">
+      <div><h1>About<br>Ellie</h1></div>
+      <div>
+        <div class="polaroid">
+          <span class="tape tape-pink" aria-hidden="true"></span>
+          <img class="hero-mark" src="/images/blue-orangutan.svg" alt="Illustration of the blue orangutan bookmark that gives Blue Orangutan Tales its name" width="300" height="440">
+          <span class="polaroid-caption">he holds my place in every book &hearts;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <h2>A poet and book lover<br>from the North West</h2>
+      </div>
+      <div>
+        <p class="lede">I'm Ellie, a creative writer and poet living in Manchester. Words are both my day job and my favourite way to waste an evening.</p>
+        <p>Blue Orangutan Tales is named after the blue orangutan bookmark that lives in whatever I happen to be reading. He has seen me through hundreds of books, and now he lends his name to the place where I write about them.</p>
+        <p>The North West has a long line of poets and storytellers who write plainly and feel deeply, and that is the tradition I want to write in. On this site you will find my book reviews, my poems and occasional notes on the Manchester and wider North West writing scene.</p>
+        <p>If you would like to keep up between posts, Instagram is where everything appears first.</p>
+        <a class="btn btn-blue" href="{{ site.instagram }}" target="_blank" rel="noopener">Follow @blueorangutantales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cream">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <h2>What you will find here</h2>
+      </div>
+      <div>
+        <p><strong>Book reviews.</strong> Honest thoughts on literary fiction, poetry collections and whatever else makes it to the top of the pile. If I loved it, I will say so. If I did not, I will say that too, kindly.</p>
+        <p><strong>Poems.</strong> Original poetry of my own, published here as each piece is finished.</p>
+        <p><strong>Tales.</strong> Notes from a reading and writing life in the North West: libraries, bookshops, open mic nights and the occasional rained-off festival.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "{{ page.url | absoluteUrl(site.url) }}",
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "mainEntity": { "@id": "{{ site.url }}/#ellie" }
+}
+</script>

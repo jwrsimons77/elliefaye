@@ -1,0 +1,20 @@
+{
+  "name": "elliefaye",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Blue Orangutan Tales - book reviews and poems from a North West poet",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "img:dimensions": "node tools/add-image-dimensions.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwrsimons77/elliefaye.git"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "image-size": "^2.0.2"
+  }
+}

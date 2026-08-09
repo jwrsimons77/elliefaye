@@ -1,0 +1,12 @@
+<a class="post-card" href="{{ post.url }}">
+  <p class="post-meta">
+    <span class="post-tag">{{ "Book Review" if post.data.type == "review" else "Poem" }}</span>
+    &middot; <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+  </p>
+  <h3>{{ post.data.title }}</h3>
+  {%- if post.data.type == "review" and post.data.rating %}
+  <p class="stars" aria-label="Rated {{ post.data.rating }} out of 5 stars">{{ post.data.rating | starString }}</p>
+  {%- endif %}
+  <p>{{ post.data.description }}</p>
+  <span class="readmore">{{ "Read the review" if post.data.type == "review" else "Read the poem" }}</span>
+</a>

@@ -468,6 +468,46 @@ button.submit:hover { background: var(--accent); }
 
 /* Case-study pages: full-bleed hero image/lockup, statement text, next-project link */
 .case-hero img { width: 100%; display: block; }
+
+/* Full-bleed photo hero with header overlaid on top (Less HIV. More you.) */
+body.dark-hero { position: relative; }
+body.dark-hero .site-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
+}
+body.dark-hero .site-header .logo,
+body.dark-hero .site-header .site-nav a { color: #fff; }
+.hero-photo {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+}
+.hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 55%);
+}
+.hero-photo .wrap { position: relative; z-index: 1; padding-bottom: 48px; }
+.hero-photo h1 { color: #fff; }
+.quote-row blockquote {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 38px);
+  font-style: normal;
+  border-left: none;
+  padding-left: 0;
+  margin: 0;
+  line-height: 1.25;
+}
+.quote-row blockquote cite { font-family: var(--font-body); }
 .statement {
   max-width: 900px;
   margin: 0 auto;

@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "_site"
 
 [[headers]]
   for = "/*"
@@ -7,8 +8,20 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
 
-# Belt-and-braces on top of the in-page noindex meta tags: tell crawlers
-# not to index the password-protected portfolio and contact pages.
+# Self-hosted fonts and generated images never change without a new
+# filename, so let browsers cache them for a year.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Belt-and-braces on top of the edge-function gate and robots.txt: tell
+# crawlers not to index the password-protected portfolio and contact pages.
 [[headers]]
   for = "/portfolio/*"
   [headers.values]

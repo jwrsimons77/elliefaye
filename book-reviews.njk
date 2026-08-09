@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: "Book Reviews"
+description: "Honest book reviews from Ellie Faye at Blue Orangutan Tales. Fiction, poetry collections and more, read and reviewed from Manchester in the North West of England."
+permalink: /book-reviews/
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="two-col">
+      <div><h1>Book<br>Reviews</h1></div>
+      <div>
+        <p class="lede">Honest reviews of the books that pass through my hands, each one read to the last page with a blue orangutan bookmark along for the ride.</p>
+        <p>Expect literary fiction, poetry collections, the odd wildcard and plenty of writing from Northern voices. No spoilers without warning, and no pretending I loved something I did not.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="post-grid">
+      {%- if collections.reviews.length %}
+      {%- for post in collections.reviews %}
+      {% include "post-card.njk" %}
+      {%- endfor %}
+      {%- else %}
+      <div class="post-card coming-soon">
+        <p class="post-meta"><span class="post-tag">Book Review</span> &middot; Coming soon</p>
+        <h3>The first reviews are being written</h3>
+        <p>The reading pile is tall and the notebook is filling up. The first full reviews will appear here shortly. Until then, shorter thoughts on recent reads are over on Instagram.</p>
+        <a class="btn btn-blue" href="{{ site.instagram }}" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "url": "{{ page.url | absoluteUrl(site.url) }}",
+  "name": "Book Reviews at {{ site.name }}",
+  "description": "Honest book reviews written in Manchester, in the North West of England",
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "author": { "@id": "{{ site.url }}/#ellie" },
+  "inLanguage": "en-GB"
+}
+</script>

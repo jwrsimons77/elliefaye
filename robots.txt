@@ -1,6 +1,5 @@
 User-agent: *
 Disallow: /portfolio/
 Disallow: /get-in-touch/
-Disallow: /post-template.html
 
 Sitemap: https://elliefaye.co.uk/sitemap.xml

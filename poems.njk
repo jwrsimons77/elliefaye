@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: "Poems | Poetry from the North West"
+description: "Original poems by Ellie Faye, a North West poet writing from Manchester. New poetry published regularly at Blue Orangutan Tales."
+permalink: /poems/
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="two-col">
+      <div><h1>Poems</h1></div>
+      <div>
+        <p class="lede">Original poetry, written in Manchester and shaped by the North West: its weather, its people and its long tradition of poets who tell it straight.</p>
+        <p>New poems will be published here as they are finished. Some will be small and quiet, some will not behave. All of them are mine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="post-grid">
+      {%- if collections.poems.length %}
+      {%- for post in collections.poems %}
+      {% include "post-card.njk" %}
+      {%- endfor %}
+      {%- else %}
+      <div class="post-card coming-soon">
+        <p class="post-meta"><span class="post-tag">Poem</span> &middot; Coming soon</p>
+        <h3>The first poems are on their way</h3>
+        <p>A handful of poems are being polished for the page right now. In the meantime, works in progress and shorter pieces appear on Instagram first.</p>
+        <a class="btn btn-blue" href="{{ site.instagram }}" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "url": "{{ page.url | absoluteUrl(site.url) }}",
+  "name": "Poems at {{ site.name }}",
+  "description": "Original poems by a North West poet writing from Manchester",
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "author": { "@id": "{{ site.url }}/#ellie" },
+  "inLanguage": "en-GB"
+}
+</script>
